@@ -45,6 +45,7 @@ public class SoundRecorderActivity extends Activity {
 				playStartSoundButton.setEnabled(true);
 				Log.d(TAG, "Loading of sound completed with sampleId " + sampleId + " and status " + status);
 				soundID = sampleId;
+				playSound(soundID);
 
 			}
 		});
