@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -61,6 +62,8 @@ public class CountDownTimerActivity extends Activity {
 
 	private Vibrator vibrator;
 
+	private Button goToSoundRecorder;
+
 	/**
 	 * Called when the activity is first created.
 	 * 
@@ -108,6 +111,13 @@ public class CountDownTimerActivity extends Activity {
 		// }
 		// });
 
+		goToSoundRecorder.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				launchSoundRecorder();
+			}
+		});
+
 		startButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -149,9 +159,15 @@ public class CountDownTimerActivity extends Activity {
 
 	}
 
+	public void launchSoundRecorder() {
+		Intent intent = new Intent(this, SoundRecorderActivity.class);
+		startActivity(intent);
+	}
+
 	@Override
 	protected void onStop() {
 		super.onStop();
+		stopCountDown();
 		stopDectectorThreads();
 	}
 
@@ -165,6 +181,7 @@ public class CountDownTimerActivity extends Activity {
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		progressTextView = (TextView) findViewById(R.id.progressTextView);
 		voiceControlToggleButton = (ToggleButton) findViewById(R.id.voiceControlToggleButton);
+		goToSoundRecorder = (Button) findViewById(R.id.goToSoundRecorderButton);
 
 	}
 
@@ -239,6 +256,8 @@ public class CountDownTimerActivity extends Activity {
 		countdownTimerField.setVisibility(View.VISIBLE);
 
 	}
+
+	
 
 	// TODO refactor this to a service.
 

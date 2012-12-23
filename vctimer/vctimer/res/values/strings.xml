@@ -11,5 +11,9 @@
     <string name="voiceControlsTitle">Voice Controls</string>
     <string name="listeningForCommands">Listening For commands</string>
     <string name="notListeningForCommands">Not listening for commands</string>
+    <string name="soundRecorderTitle">Sound recorder</string>
+    <string name="goToSoundRecorder">Go to sound recorder</string>
+    <string name="recordStartSoundButton">Record start sound</string>
+    <string name="playStartSoundButton">Play start sound</string>
 
 </resources>

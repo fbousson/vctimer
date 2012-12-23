@@ -86,8 +86,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/timerbar"
         android:visibility="gone" />
-    
-    <TextView  android:id="@+id/progressTextView" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/progressBar" android:visibility="gone"/>
 
-    
+    <TextView
+        android:id="@+id/progressTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressBar"
+        android:visibility="gone" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/goToSoundRecorderButton"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:text="@string/goToSoundRecorder" />
+
 </RelativeLayout>
