@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello timer!</string>
+    <string name="title">Voice Controlled Timer</string>
+    <string name="app_name">vctimer</string>
+    <string name="startTimer">Start</string>
+    <string name="stopTimer">Stop</string>
+    <string name="resetTimer">Reset</string>
+    <string name="timerCounterHint">Enter time text</string>
+
+</resources>

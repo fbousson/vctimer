@@ -18,3 +18,13 @@ local.properties
 # Eclipse project files
 .classpath
 .project
+vctimer/vctimer-it/target/classes/META-INF/MANIFEST.MF
+vctimer/vctimer-it/target/classes/META-INF/maven/be.fbousson.voicecontroller/vctimer-it/pom.properties
+vctimer/vctimer-it/target/classes/META-INF/maven/be.fbousson.voicecontroller/vctimer-it/pom.xml
+vctimer/vctimer-it/target/generated-sources/r/be/fbousson/voicecontroller/test/BuildConfig.java
+vctimer/vctimer-it/target/generated-sources/r/be/fbousson/voicecontroller/test/R.java
+vctimer/vctimer-it/target/maven-archiver/pom.properties
+vctimer/vctimer-it/target/vctimer-it-1.0-SNAPSHOT.jar
+vctimer/vctimer/target/generated-sources/r/be/fbousson/voicecontroller/BuildConfig.java
+vctimer/vctimer/target/generated-sources/r/be/fbousson/voicecontroller/R.java
+vctimer/vctimer/target/maven-archiver/pom.properties
