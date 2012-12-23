@@ -33,11 +33,6 @@ public class FingerprintDemo {
 		// dump the fingerprint
 		FingerprintManager fingerprintManager = new FingerprintManager();
 
-		// File file = new File(filename);
-		// if (!file.exists()) {
-		// file.createNewFile();
-		// }
-		// boolean fileExists = file.exists();
 
 		fingerprintManager.saveFingerprintAsFile(fingerprint, "out/" + filename + ".fingerprint");
 
