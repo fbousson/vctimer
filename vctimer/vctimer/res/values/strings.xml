@@ -8,5 +8,8 @@
     <string name="stopTimer">Stop</string>
     <string name="resetTimer">Reset</string>
     <string name="timerCounterHint">Enter time text</string>
+    <string name="voiceControlsTitle">Voice Controls</string>
+    <string name="listeningForCommands">Listening For commands</string>
+    <string name="notListeningForCommands">Not listening for commands</string>
 
 </resources>

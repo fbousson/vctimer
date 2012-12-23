@@ -4,22 +4,24 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.Chronometer.OnChronometerTickListener;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
-public class HelloAndroidActivity extends Activity {
+public class TimerActivity extends Activity {
 
-	private static String TAG = "vctimer";
+	private static String TAG = TimerActivity.class.getName();
 
+	private ToggleButton voiceControlToggleButton;
 	private Chronometer chronometerView;
 
 	private Button startButton;
@@ -51,14 +53,24 @@ public class HelloAndroidActivity extends Activity {
 
 		initControls();
 
-		chronometerView.setOnChronometerTickListener(new OnChronometerTickListener() {
+		voiceControlToggleButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-			public void onChronometerTick(Chronometer chronometer) {
-				long elapsedMillis = SystemClock.elapsedRealtime() - chronometerView.getBase();
-				Log.d(TAG, "chronometer tick " + elapsedMillis);
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				Log.d(TAG, "voiceControlToggleButton checked : " + isChecked);
 
 			}
 		});
+
+		// chronometerView.setOnChronometerTickListener(new
+		// OnChronometerTickListener() {
+		//
+		// public void onChronometerTick(Chronometer chronometer) {
+		// long elapsedMillis = SystemClock.elapsedRealtime() -
+		// chronometerView.getBase();
+		// Log.d(TAG, "chronometer tick " + elapsedMillis);
+		//
+		// }
+		// });
 
 		startButton.setOnClickListener(new OnClickListener() {
 
@@ -106,6 +118,7 @@ public class HelloAndroidActivity extends Activity {
 		countdownTimerField = (TextView) findViewById(R.id.countdownTimerField);
 		seekBar = (SeekBar) findViewById(R.id.timerbar);
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+		voiceControlToggleButton = (ToggleButton) findViewById(R.id.voiceControlToggleButton);
 
 	}
 
