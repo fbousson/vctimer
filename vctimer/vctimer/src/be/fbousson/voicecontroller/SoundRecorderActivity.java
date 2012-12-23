@@ -15,7 +15,6 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ToggleButton;
 import be.fbousson.voicecontroller.recorder.ExtAudioRecorder;
-import be.fbousson.voicecontroller.recorder.ExtAudioRecorder.State;
 
 public class SoundRecorderActivity extends Activity {
 
@@ -45,14 +44,14 @@ public class SoundRecorderActivity extends Activity {
 				loaded = true;
 				playStartSoundButton.setEnabled(true);
 				Log.d(TAG, "Loading of sound completed with sampleId " + sampleId + " and status " + status);
-				// playSound(soundID);
 				soundID = sampleId;
 
 			}
 		});
-		soundID = soundPool.load(getStartSoundFileName(), 1);
-		// soundID = soundPool.load(this, R.raw.sound1, 1);
-
+		if (fileExists(getStartSoundFileName())) {
+			soundID = soundPool.load(getStartSoundFileName(), 1);
+			Log.d(TAG, "loading directly : " + soundID);
+		}
 	}
 
 	private void initBehaviour() {
@@ -64,7 +63,6 @@ public class SoundRecorderActivity extends Activity {
 				} else {
 					stopRecording();
 				}
-
 			}
 
 		});
@@ -91,7 +89,7 @@ public class SoundRecorderActivity extends Activity {
 
 	private void playSound(int soundID) {
 		// Getting the user sound settings
-		Log.d(TAG, "started playing sound");
+		Log.d(TAG, "started playing sound " + soundID);
 		AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 		float actualVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 		float maxVolume = (float) audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
@@ -107,10 +105,6 @@ public class SoundRecorderActivity extends Activity {
 	}
 
 	public File getSoundFilesCacheDir() {
-		if (true) {
-			return getCacheDir();
-		}
-
 		if (android.os.Build.VERSION.SDK_INT >= 8) {
 			File externalCacheDir = getExternalCacheDir();
 			if (externalCacheDir != null && externalCacheDir.exists()) {
@@ -127,17 +121,19 @@ public class SoundRecorderActivity extends Activity {
 	private void startRecording() {
 		Log.d(TAG, "start recording");
 		playStartSoundButton.setEnabled(false);
+		if (loaded) {
+			boolean succesfullyUnloaded = soundPool.unload(soundID);
+			Log.d(TAG, "succesfullyUnloaded " + succesfullyUnloaded);
+		}
+		deleteIfFileExists(getStartSoundFileName());
 		logState();
 		audioRecorder.setOutputFile(getStartSoundFileName());
-		// State state = audioRecorder.getState();
-		// if (state == null) {
 		audioRecorder.prepare();
-		// }
-
-		deleteIfFileExists(getStartSoundFileName());
-
 		audioRecorder.start();
+	}
 
+	private boolean fileExists(String fileName) {
+		return new File(fileName).exists();
 	}
 
 	private void deleteIfFileExists(String startSoundFileName) {
@@ -157,7 +153,7 @@ public class SoundRecorderActivity extends Activity {
 	private void stopRecording() {
 		Log.d(TAG, "stop recording");
 		logState();
-		audioRecorder.stop();
+		audioRecorder.reset();
 		logState();
 		// audioRecorder.reset();
 		// soundPool.unload(soundID);
